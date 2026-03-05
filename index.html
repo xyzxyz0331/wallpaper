@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AnimeWallpaperz.in — Your ultimate destination for stunning HD anime wallpapers. Free downloads, updated daily. Coming June 2026." />
+  <meta name="keywords" content="anime wallpapers, HD wallpapers, free wallpapers, anime art" />
+  <meta property="og:title" content="AnimeWallpaperz.in — Coming Soon" />
+  <meta property="og:description" content="The ultimate hub for breathtaking anime wallpapers. Coming June 1, 2026." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⛩️</text></svg>" />
+  <title>AnimeWallpaperz.in — Coming Soon</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-kanji">⛩</span><span>Anime<span class="c-purple">Wallpaperz</span><span class="c-pink">.in</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" class="nav-link active">Home</a></li>
+        <li><a href="#preview" class="nav-link">Preview</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <!-- <li><a href="copyright.html" class="nav-link">Copyright</a></li> -->
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="burger" id="burger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="#" class="drawer-link">Home</a>
+      <a href="#preview" class="drawer-link">Preview</a>
+      <a href="#features" class="drawer-link">Features</a>
+      <!-- <a href="copyright.html" class="drawer-link">Copyright</a> -->
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <!-- Decorative rings -->
+    <div class="rings" aria-hidden="true">
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="badge-pulse"></span>
+        Launching — 1 June 2026
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ht-line">Something</span>
+        <span class="ht-line gradient-text">Epic</span>
+        <span class="ht-line">Is Coming</span>
+      </h1>
+
+      <p class="hero-sub">
+        The ultimate hub for breathtaking <strong>anime wallpapers</strong>.<br />
+        HD quality &mdash; free to download &mdash; updated every day.
+      </p>
+
+      <!-- Countdown -->
+      <div class="countdown-wrap">
+        <p class="cd-label">Countdown to Launch</p>
+        <div class="countdown" id="countdown">
+          <div class="cd-unit">
+            <div class="cd-num" id="cd-days">00</div>
+            <div class="cd-text">Days</div>
+          </div>
+          <div class="cd-colon">:</div>
+          <div class="cd-unit">
+            <div class="cd-num" id="cd-hours">00</div>
+            <div class="cd-text">Hours</div>
+          </div>
+          <div class="cd-colon">:</div>
+          <div class="cd-unit">
+            <div class="cd-num" id="cd-minutes">00</div>
+            <div class="cd-text">Minutes</div>
+          </div>
+          <div class="cd-colon">:</div>
+          <div class="cd-unit">
+            <div class="cd-num" id="cd-seconds">00</div>
+            <div class="cd-text">Seconds</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="scroll-cue">
+        <span>Scroll to preview</span>
+        <i class="fas fa-chevron-down bounce"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WALLPAPER PREVIEW ========== -->
+  <section class="wpreview" id="preview">
+    <div class="section-head">
+      <span class="sec-badge">Sneak Peek</span>
+      <h2 class="sec-title">Sample Wallpapers</h2>
+      <p class="sec-sub">A glimpse of what's coming — hand-picked anime art in every style &amp; resolution</p>
+    </div>
+
+    <div class="wgrid">
+      <!-- Card 1 — Featured (tall) -->
+      <div class="wcard wcard--featured reveal" style="--gbg: linear-gradient(145deg,#6d28d9,#a855f7,#ec4899)">
+        <img src="wallpapers/1.jpg" alt="Mystic Night — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
+        <div class="wcard-overlay">
+          <span class="wtag">HD</span>
+          <h3 class="wtitle">Mystic Night</h3>
+          <p class="wsub">Dark Fantasy</p>
+          <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#db2777,#f472b6,#fbbf24)">
+        <img src="wallpapers/2.png" alt="Sakura Dreams — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
+        <div class="wcard-overlay">
+          <span class="wtag">HD</span>
+          <h3 class="wtitle">Sakura Dreams</h3>
+          <p class="wsub">Romance / Slice of Life</p>
+          <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#0284c7,#38bdf8,#34d399)">
+        <img src="wallpapers/5.png" alt="Neon Tokyo — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
+        <div class="wcard-overlay">
+          <span class="wtag">HD</span>
+          <h3 class="wtitle">Neon Tokyo</h3>
+          <p class="wsub">Cyberpunk / Sci-Fi</p>
+          <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#065f46,#34d399,#6ee7b7)">
+        <img src="wallpapers/4.png" alt="Forest Spirit — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
+        <div class="wcard-overlay">
+          <span class="wtag">HD</span>
+          <h3 class="wtitle">Forest Spirit</h3>
+          <p class="wsub">Nature / Fantasy</p>
+          <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#b45309,#f59e0b,#fde68a)">
+        <img src="wallpapers/5.jpg" alt="Sunset Warrior — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
+        <div class="wcard-overlay">
+          <span class="wtag">HD</span>
+          <h3 class="wtitle">Sunset Warrior</h3>
+          <p class="wsub">Action / Shonen</p>
+          <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#4c1d95,#7c3aed,#c4b5fd)">
+        <img src="wallpapers/6.jpg" alt="Galaxy Knight — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
+        <div class="wcard-overlay">
+          <span class="wtag">HD</span>
+          <h3 class="wtitle">Galaxy Knight</h3>
+          <p class="wsub">Space / Adventure</p>
+          <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="wpreview-note">
+      <i class="fas fa-images"></i>&nbsp; 500+ wallpapers dropping on launch day. Follow us to stay updated.
+    </p>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section class="features" id="features">
+    <div class="section-head">
+      <span class="sec-badge">Why Us</span>
+      <h2 class="sec-title">What to Expect</h2>
+      <p class="sec-sub">Built by anime fans, for anime fans — every detail thought through</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fas fa-image"></i></div>
+        <h3>HD Quality</h3>
+        <p>Every wallpaper hand-picked and available in stunning Full HD resolution, pixel-perfect on any screen.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fas fa-download"></i></div>
+        <h3>Always Free</h3>
+        <p>No sign-up, no paywalls. Download any wallpaper instantly and completely free. Great art belongs to everyone.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Daily Updates</h3>
+        <p>Fresh wallpapers added every single day — from timeless classics to the latest seasonal anime drops.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fas fa-mobile-screen"></i></div>
+        <h3>Every Device</h3>
+        <p>Desktop, mobile, tablet — we have the perfect wallpaper in the exact resolution your screen needs.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fas fa-magnifying-glass"></i></div>
+        <h3>Smart Search</h3>
+        <p>Find wallpapers by character, series, genre, studio, or mood in seconds with our intelligent search.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon"><i class="fas fa-fire"></i></div>
+        <h3>Trending & Picks</h3>
+        <p>Discover what the community is downloading — daily trending charts and curated collections just for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-kanji">⛩</span><span>Anime<span class="c-purple">Wallpaperz</span><span class="c-pink">.in</span></span>
+          </div>
+          <p class="footer-tagline">
+            Your ultimate destination for breathtaking anime wallpapers — HD, free, and updated daily.
+          </p>
+          <div class="socials">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-btn s-ig" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-btn s-x" aria-label="X / Twitter">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-btn s-fb" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Site</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#preview">Preview</a></li>
+            <li><a href="#features">Features</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div class="footer-col">
+          <!-- <h4 class="footer-col-title">Legal</h4> -->
+          <ul>
+            <!-- <li><a href="copyright.html">Copyright Policy</a></li> -->
+            <!-- <li><a href="privacy.html">Privacy Policy</a></li> -->
+            <!-- <li><a href="terms.html">Terms of Service</a></li> -->
+            <!-- <li><a href="dmca.html">DMCA Takedown</a></li> -->
+          </ul>
+        </div>
+
+        <!-- Contact column — commented out for now -->
+        <!--
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <ul>
+            <li>
+              <a href="mailto:hello@animewallpaperz.in">
+                <i class="fas fa-envelope"></i>&nbsp; hello@animewallpaperz.in
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+                <i class="fab fa-instagram"></i>&nbsp; @animewallpaperz.in
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/" target="_blank" rel="noopener">
+                <i class="fab fa-x-twitter"></i>&nbsp; @animewallpaperzin
+              </a>
+            </li>
+          </ul>
+        </div>
+        -->
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; 2026 <strong>AnimeWallpaperz.in</strong> &mdash; All rights reserved.
+          <!-- &nbsp;<a href="copyright.html">Copyright Policy</a> -->
+          <!-- &nbsp;&bull;&nbsp;<a href="privacy.html">Privacy</a> -->
+          <!-- &nbsp;&bull;&nbsp;<a href="terms.html">Terms</a> -->
+        </p>
+        <p class="footer-disc">
+          <!-- All anime artwork and characters are property of their respective creators and studios. AnimeWallpaperz.in does not claim ownership of any third-party anime artwork. -->
+          <!-- If you believe content infringes your rights, please contact us via our <a href="dmca.html">DMCA page</a>. -->
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

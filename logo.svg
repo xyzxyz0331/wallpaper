@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="red" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#FF4422"/>
+      <stop offset="100%" stop-color="#AA1100"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#3A3A3A"/>
+      <stop offset="100%" stop-color="#0D0D0D"/>
+    </linearGradient>
+    <!-- Shine overlay for top beam -->
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Top knob (shimagi ornament) -->
+  <rect x="21" y="1" width="6" height="8" rx="1.5" fill="url(#red)"/>
+
+  <!-- Kasagi — top beam (dark, widest, slightly rounded ends) -->
+  <rect x="0"  y="9"  width="48" height="11" rx="5.5" fill="url(#dark)"/>
+  <!-- Kasagi shine -->
+  <rect x="0"  y="9"  width="48" height="11" rx="5.5" fill="url(#shine)"/>
+
+  <!-- Left pillar (red) -->
+  <rect x="9"  y="18" width="8"  height="30" rx="2"   fill="url(#red)"/>
+
+  <!-- Right pillar (red) -->
+  <rect x="31" y="18" width="8"  height="30" rx="2"   fill="url(#red)"/>
+
+  <!-- Nuki — second beam (dark) -->
+  <rect x="11" y="24" width="26" height="7"  rx="1.5" fill="url(#dark)"/>
+  <!-- Nuki shine -->
+  <rect x="11" y="24" width="26" height="7"  rx="1.5" fill="url(#shine)"/>
+</svg>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AnimeWallpaperz.in Copyright Policy — Learn about our content policies, DMCA takedown process, and intellectual property rights." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⛩️</text></svg>" />
+  <title>Copyright Policy — AnimeWallpaperz.in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Copyright page specific styles ── */
+    .page-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 120px 28px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-hero {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px;
+      background: rgba(168,85,247,0.1);
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--purple);
+      margin-bottom: 24px;
+    }
+
+    .page-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .page-updated {
+      font-size: 0.82rem;
+      color: var(--text3);
+    }
+
+    /* Policy cards */
+    .policy-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 36px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: var(--tr);
+    }
+    .policy-card:hover {
+      border-color: var(--border-acc);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .policy-card-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .policy-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--r-md);
+      background: rgba(168,85,247,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      color: var(--purple);
+      flex-shrink: 0;
+    }
+
+    .policy-card h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .policy-card p,
+    .policy-card li {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.8;
+    }
+
+    .policy-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .policy-card ul li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .policy-card ul li::before {
+      content: '›';
+      color: var(--purple);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      flex-shrink: 0;
+    }
+
+    .highlight-box {
+      background: rgba(168,85,247,0.07);
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: var(--r-md);
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+
+    .highlight-box p {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.75;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 12px 24px;
+      background: var(--grad-main);
+      border-radius: var(--r-full);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: var(--tr);
+      text-decoration: none;
+    }
+    .contact-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 22px rgba(168,85,247,0.4);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--purple);
+      margin-bottom: 36px;
+      transition: var(--tr-fast);
+    }
+    .back-link:hover { gap: 12px; }
+  </style>
+</head>
+<body>
+
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-kanji">⛩</span><span>Anime<span class="c-purple">Wallpaperz</span><span class="c-pink">.in</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#preview" class="nav-link">Preview</a></li>
+        <li><a href="index.html#features" class="nav-link">Features</a></li>
+        <li><a href="copyright.html" class="nav-link active">Copyright</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="burger" id="burger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="index.html" class="drawer-link">Home</a>
+      <a href="index.html#preview" class="drawer-link">Preview</a>
+      <a href="index.html#features" class="drawer-link">Features</a>
+      <a href="copyright.html" class="drawer-link">Copyright</a>
+    </div>
+  </nav>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="page-wrapper">
+
+    <a href="index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <div class="page-hero">
+      <div class="page-badge">
+        <i class="fas fa-shield-halved"></i>
+        Legal
+      </div>
+      <h1 class="page-title gradient-text">Copyright Policy</h1>
+      <p class="page-updated">Last updated: March 2026 &nbsp;&bull;&nbsp; Effective from launch</p>
+    </div>
+
+    <!-- Overview -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-circle-info"></i></div>
+        <h2>Overview</h2>
+      </div>
+      <p>
+        AnimeWallpaperz.in is a wallpaper sharing platform dedicated to anime artwork. We take intellectual property rights very seriously. This Copyright Policy explains how we handle content on our platform and what steps to take if you believe your copyrighted work has been used without authorization.
+      </p>
+    </div>
+
+    <!-- Ownership -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-copyright"></i></div>
+        <h2>Content Ownership & Attribution</h2>
+      </div>
+      <p>
+        All anime artwork, characters, and images featured on AnimeWallpaperz.in remain the exclusive property of their respective creators, artists, and studios. We do <strong>not</strong> claim ownership of any third-party anime artwork displayed on this platform.
+      </p>
+      <ul>
+        <li>Anime characters and their designs are owned by the original creators and studios (e.g., Shueisha, Toei Animation, Wit Studio, MAPPA, etc.).</li>
+        <li>Fan-art and illustrations are owned by their respective artists. We credit artists wherever possible.</li>
+        <li>AnimeWallpaperz.in only claims ownership over original site design, code, and any content explicitly created by us.</li>
+      </ul>
+    </div>
+
+    <!-- Usage Rights -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-scale-balanced"></i></div>
+        <h2>How We Use Content</h2>
+      </div>
+      <p>
+        Wallpapers on AnimeWallpaperz.in are shared under the following guidelines:
+      </p>
+      <ul>
+        <li>Content is shared for personal, non-commercial use as wallpapers for personal devices only.</li>
+        <li>We do not sell, monetize, or commercially distribute any third-party anime artwork directly.</li>
+        <li>Where possible, we credit the original artist and link to the source.</li>
+        <li>Images are provided in good faith for fan appreciation and are not intended to replace official merchandise or licensed products.</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>Note:</strong> Downloading wallpapers from our site is permitted for personal use only. Redistribution, commercial use, or modification of any third-party artwork without explicit permission from the original rights holder is strictly prohibited.</p>
+      </div>
+    </div>
+
+    <!-- DMCA -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-gavel"></i></div>
+        <h2>DMCA Takedown Process</h2>
+      </div>
+      <p>
+        If you are a copyright holder or authorized representative and believe that content on AnimeWallpaperz.in infringes your copyright, you may submit a DMCA takedown notice. Your notice must include:
+      </p>
+      <ul>
+        <li>Your full name and contact information (email &amp; phone).</li>
+        <li>Identification of the copyrighted work you believe has been infringed.</li>
+        <li>The specific URL(s) on our site where the infringing content appears.</li>
+        <li>A statement that you have a good faith belief that the use is not authorized by the copyright owner.</li>
+        <li>A statement, under penalty of perjury, that the information in your notice is accurate and that you are the copyright owner or authorized to act on their behalf.</li>
+        <li>Your physical or electronic signature.</li>
+      </ul>
+      <p style="margin-top:16px">Send your DMCA takedown notice to:</p>
+      <a href="mailto:dmca@animewallpaperz.in" class="contact-btn">
+        <i class="fas fa-envelope"></i> dmca@animewallpaperz.in
+      </a>
+      <div class="highlight-box" style="margin-top:20px">
+        <p>We process legitimate takedown requests within <strong>72 hours</strong> of receipt. Content will be removed promptly while the matter is under review.</p>
+      </div>
+    </div>
+
+    <!-- Counter-Notice -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-reply"></i></div>
+        <h2>Counter-Notice</h2>
+      </div>
+      <p>
+        If you believe your content was removed by mistake or misidentification, you may submit a counter-notice. The counter-notice must include your contact information, identification of the removed material, a statement under penalty of perjury that you have a good faith belief the material was removed by mistake, and your consent to jurisdiction of the Indian courts.
+      </p>
+      <p style="margin-top:12px">
+        Counter-notices should be sent to <a href="mailto:legal@animewallpaperz.in" style="color:var(--purple)">legal@animewallpaperz.in</a>.
+      </p>
+    </div>
+
+    <!-- Fair Use -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-handshake"></i></div>
+        <h2>Fair Use Statement</h2>
+      </div>
+      <p>
+        Some content on AnimeWallpaperz.in may be shared under the principles of fair use / fair dealing for purposes of commentary, criticism, fan appreciation, and non-commercial personal enjoyment. We respect intellectual property rights and work collaboratively with rights holders to resolve any concerns quickly and amicably.
+      </p>
+    </div>
+
+    <!-- Repeat Infringer Policy -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-user-slash"></i></div>
+        <h2>Repeat Infringer Policy</h2>
+      </div>
+      <p>
+        In accordance with the Digital Millennium Copyright Act (DMCA) and applicable Indian law, AnimeWallpaperz.in maintains a policy to terminate users who are found to be repeat copyright infringers in appropriate circumstances.
+      </p>
+    </div>
+
+    <!-- Contact -->
+    <div class="policy-card">
+      <div class="policy-card-head">
+        <div class="policy-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <h2>Contact Us</h2>
+      </div>
+      <p>For any copyright-related questions, content removal requests, or licensing inquiries, please reach out:</p>
+      <ul style="margin-top:16px">
+        <li>General: <a href="mailto:hello@animewallpaperz.in" style="color:var(--purple)">hello@animewallpaperz.in</a></li>
+        <li>DMCA / Legal: <a href="mailto:dmca@animewallpaperz.in" style="color:var(--purple)">dmca@animewallpaperz.in</a></li>
+        <li>Instagram: <a href="https://www.instagram.com/" target="_blank" rel="noopener" style="color:var(--purple)">@animewallpaperz.in</a></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-kanji">⛩</span><span>Anime<span class="c-purple">Wallpaperz</span><span class="c-pink">.in</span></span>
+          </div>
+          <p class="footer-tagline">Your ultimate destination for breathtaking anime wallpapers.</p>
+          <div class="socials">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-btn s-ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-btn s-x" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-btn s-fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#preview">Preview</a></li>
+            <li><a href="index.html#features">Features</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-col-title">Legal</h4>
+          <ul>
+            <li><a href="copyright.html">Copyright Policy</a></li>
+            <!-- <li><a href="privacy.html">Privacy Policy</a></li> -->
+            <!-- <li><a href="terms.html">Terms of Service</a></li> -->
+            <!-- <li><a href="dmca.html">DMCA Takedown</a></li> -->
+          </ul>
+        </div>
+        <!-- Contact column — commented out for now -->
+        <!--
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@animewallpaperz.in"><i class="fas fa-envelope"></i>&nbsp; hello@animewallpaperz.in</a></li>
+            <li><a href="mailto:dmca@animewallpaperz.in"><i class="fas fa-gavel"></i>&nbsp; dmca@animewallpaperz.in</a></li>
+          </ul>
+        </div>
+        -->
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; 2026 <strong>AnimeWallpaperz.in</strong> &mdash; All rights reserved.
+          &nbsp;<a href="copyright.html">Copyright</a>
+          <!-- &bull; <a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a> -->
+        </p>
+        <p class="footer-disc">
+          All anime artwork and characters are property of their respective creators and studios. AnimeWallpaperz.in does not claim ownership of any third-party anime artwork.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Remove wallpaper-specific elements that don't exist on this page
+    const canvas = document.getElementById('particles-canvas');
+  </script>
+</body>
+</html>
