@@ -124,7 +124,7 @@
     </div>
 
     <div class="wgrid">
-      <!-- Card 1 — Featured (tall) -->
+      <!-- Card 1 · Portrait 1724×3200 -->
       <div class="wcard wcard--featured reveal" style="--gbg: linear-gradient(145deg,#6d28d9,#a855f7,#ec4899)">
         <img src="wallpapers/1.jpg" alt="Mystic Night — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
         <div class="wcard-overlay">
@@ -135,7 +135,7 @@
         </div>
       </div>
 
-      <!-- Card 2 -->
+      <!-- Card 2 · Square 3200×3200 -->
       <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#db2777,#f472b6,#fbbf24)">
         <img src="wallpapers/2.png" alt="Sakura Dreams — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
         <div class="wcard-overlay">
@@ -146,7 +146,7 @@
         </div>
       </div>
 
-      <!-- Card 3 -->
+      <!-- Card 3 · Landscape 1792×1024 -->
       <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#0284c7,#38bdf8,#34d399)">
         <img src="wallpapers/5.png" alt="Neon Tokyo — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
         <div class="wcard-overlay">
@@ -157,7 +157,7 @@
         </div>
       </div>
 
-      <!-- Card 4 -->
+      <!-- Card 4 · Landscape 1792×1024 -->
       <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#065f46,#34d399,#6ee7b7)">
         <img src="wallpapers/4.png" alt="Forest Spirit — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
         <div class="wcard-overlay">
@@ -168,24 +168,13 @@
         </div>
       </div>
 
-      <!-- Card 5 -->
+      <!-- Card 5 · Landscape 2744×1568 -->
       <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#b45309,#f59e0b,#fde68a)">
         <img src="wallpapers/5.jpg" alt="Sunset Warrior — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
         <div class="wcard-overlay">
           <span class="wtag">HD</span>
           <h3 class="wtitle">Sunset Warrior</h3>
           <p class="wsub">Action / Shonen</p>
-          <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="wcard reveal" style="--gbg: linear-gradient(145deg,#4c1d95,#7c3aed,#c4b5fd)">
-        <img src="wallpapers/6.jpg" alt="Galaxy Knight — Anime Wallpaper" class="wcard-img" onerror="this.style.display='none'" />
-        <div class="wcard-overlay">
-          <span class="wtag">HD</span>
-          <h3 class="wtitle">Galaxy Knight</h3>
-          <p class="wsub">Space / Adventure</p>
           <button class="wbtn"><i class="fas fa-lock"></i> Available at Launch</button>
         </div>
       </div>
@@ -328,6 +317,40 @@
 
   <!-- Toast -->
   <div class="toast" id="toast"></div>
+
+  <!-- ========== FLOATING MOBILE NAV ========== -->
+  <button id="floating-hamburger" aria-label="Open navigation">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div id="mobile-backdrop"></div>
+
+  <div id="mobile-drawer-menu">
+    <div class="drawer-grab-handle"></div>
+    <div class="drawer-header">
+      <span class="logo-kanji">⛩</span>
+      <span>Anime<span class="c-purple">Wallpaperz</span><span class="c-pink">.in</span></span>
+    </div>
+    <nav class="drawer-nav">
+      <ul>
+        <li>
+          <a href="#home" class="drawer-nav-link active" data-section="home">
+            <i class="fas fa-house"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="#preview" class="drawer-nav-link" data-section="preview">
+            <i class="fas fa-images"></i> Preview
+          </a>
+        </li>
+        <li>
+          <a href="#features" class="drawer-nav-link" data-section="features">
+            <i class="fas fa-star"></i> Features
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
   <script src="js/script.js"></script>
 </body>

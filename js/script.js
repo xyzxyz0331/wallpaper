@@ -2,6 +2,10 @@
    ANIMEWALLPAPERZ.IN — Coming Soon  |  script.js
    ================================================================ */
 
+/* ===== SCROLL RESTORATION — always start at top on refresh ===== */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 /* ===== THEME TOGGLE ===== */
 const html      = document.documentElement;
 const themeBtn  = document.getElementById('themeBtn');
@@ -239,3 +243,116 @@ animate();
 window.addEventListener('resize', () => {
   initParticles();
 }, { passive: true });
+
+/* ===== WALLPAPER CARD TAP-TO-REVEAL (touch) ===== */
+document.querySelectorAll('.wcard').forEach(card => {
+  card.addEventListener('click', () => {
+    const isActive = card.classList.contains('wcard--active');
+    // close all other open cards
+    document.querySelectorAll('.wcard--active').forEach(c => c.classList.remove('wcard--active'));
+    if (!isActive) card.classList.add('wcard--active');
+  });
+});
+
+/* ================================================================
+   FLOATING HAMBURGER NAV
+   ================================================================ */
+(function () {
+  'use strict';
+
+  const fab      = document.getElementById('floating-hamburger');
+  const backdrop = document.getElementById('mobile-backdrop');
+  const drawer   = document.getElementById('mobile-drawer-menu');
+  const body     = document.body;
+  let initialized = false;
+
+  function init() {
+    if (!fab || !backdrop || !drawer) return;
+    if (initialized) return;
+
+    handleResize();
+    fab.addEventListener('click', toggleMenu);
+    backdrop.addEventListener('click', closeMenu);
+
+    drawer.querySelectorAll('.drawer-nav-link').forEach(link => {
+      link.addEventListener('click', function () {
+        updateActive(this);
+        closeMenu();
+      });
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    window.addEventListener('resize', handleResize);
+    initialized = true;
+  }
+
+  function openMenu() {
+    if (window.innerWidth > 768) return;
+
+    // reset & stagger animation
+    drawer.querySelectorAll('.drawer-nav-link').forEach((link, i) => {
+      link.style.animation = 'none';
+      void link.offsetWidth; // reflow
+      link.style.animation = '';
+      link.style.setProperty('--nav-index', i);
+    });
+
+    fab.classList.add('open');
+    drawer.classList.add('open');
+    backdrop.style.display = 'block';
+    void backdrop.offsetWidth;
+    backdrop.classList.add('active');
+    body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    fab.classList.remove('open');
+    drawer.classList.remove('open');
+    backdrop.classList.remove('active');
+    setTimeout(() => {
+      if (!drawer.classList.contains('open')) backdrop.style.display = 'none';
+    }, 300);
+    body.style.overflow = '';
+  }
+
+  function toggleMenu() {
+    drawer.classList.contains('open') ? closeMenu() : openMenu();
+  }
+
+  function handleResize() {
+    if (window.innerWidth <= 768) {
+      fab.style.display = 'flex';
+    } else {
+      fab.style.display = 'none';
+      if (drawer.classList.contains('open')) closeMenu();
+    }
+  }
+
+  function updateActive(clicked) {
+    drawer.querySelectorAll('.drawer-nav-link').forEach(l => l.classList.remove('active'));
+    clicked.classList.add('active');
+  }
+
+  // Sync active drawer link with scroll-based section observer
+  const drawerLinks = document.querySelectorAll('.drawer-nav-link');
+  const fabSectionObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        drawerLinks.forEach(l => {
+          l.classList.toggle('active', l.dataset.section === entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-50% 0px -50% 0px' });
+
+  document.querySelectorAll('section[id]').forEach(s => fabSectionObs.observe(s));
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
