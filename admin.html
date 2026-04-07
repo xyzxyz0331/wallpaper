@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — AnimeWallpaperz</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg:         #07070f;
+      --bg2:        #0d0d1e;
+      --bg3:        #12122a;
+      --card-bg:    rgba(255,255,255,0.04);
+      --card-hover: rgba(255,255,255,0.07);
+      --border:     rgba(255,255,255,0.07);
+      --border-acc: rgba(168,85,247,0.35);
+      --text:       #e2e8f0;
+      --text2:      #94a3b8;
+      --text3:      #64748b;
+      --purple:     #a855f7;
+      --pink:       #ec4899;
+      --blue:       #3b82f6;
+      --green:      #22c55e;
+      --red:        #ef4444;
+      --yellow:     #eab308;
+      --grad-main:  linear-gradient(135deg, #a855f7, #ec4899);
+      --shadow-md:  0 8px 32px rgba(0,0,0,0.45);
+      --glow:       0 0 40px rgba(168,85,247,0.25);
+      --r-sm: 8px; --r-md: 16px; --r-lg: 24px; --r-full: 9999px;
+      --ease: cubic-bezier(0.4,0,0.2,1);
+      --tr: 0.3s var(--ease);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: var(--r-full); }
+
+    /* ── Login ── */
+    #login-gate {
+      position: fixed; inset: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+    }
+    .login-card {
+      background: var(--card-bg); border: 1px solid var(--border-acc);
+      border-radius: var(--r-lg); padding: 48px 40px;
+      width: 100%; max-width: 400px;
+      backdrop-filter: blur(24px);
+      box-shadow: var(--shadow-md), var(--glow); text-align: center;
+    }
+    .login-card .logo {
+      font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 900;
+      background: var(--grad-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .login-card p { color: var(--text2); font-size: 0.9rem; margin-bottom: 32px; }
+
+    /* ── Form controls ── */
+    input, textarea, select {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r-sm); color: var(--text);
+      font-family: 'Poppins', sans-serif; font-size: 0.9rem; padding: 10px 14px;
+      transition: border-color var(--tr), box-shadow var(--tr); outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--purple); box-shadow: 0 0 0 3px rgba(168,85,247,0.15);
+    }
+    input.error { border-color: var(--red) !important; }
+    select option { background: var(--bg2); }
+    .input-wrap { position: relative; }
+    .input-wrap i {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--text3); font-size: 0.9rem; pointer-events: none;
+    }
+    .input-wrap input { padding-left: 40px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 20px; border: none; border-radius: var(--r-sm);
+      font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; transition: opacity var(--tr), transform var(--tr); text-decoration: none;
+    }
+    .btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .btn-primary { background: var(--grad-main); color: #fff; width: 100%; }
+    .btn-ghost   { background: var(--card-hover); color: var(--text2); border: 1px solid var(--border); }
+    .btn-danger  { background: rgba(239,68,68,0.1); color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
+    .btn-success { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+    .btn-warn    { background: rgba(234,179,8,0.1); color: var(--yellow); border: 1px solid rgba(234,179,8,0.25); }
+    .btn-sm      { padding: 6px 14px; font-size: 0.78rem; }
+    .btn-xs      { padding: 4px 10px; font-size: 0.72rem; }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%,60% { transform: translateX(-8px); }
+      40%,80% { transform: translateX(8px); }
+    }
+
+    /* ── Layout ── */
+    #dashboard { display: none; }
+    .topbar {
+      background: rgba(7,7,15,0.9); border-bottom: 1px solid var(--border);
+      padding: 13px 28px; display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-logo {
+      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem;
+      background: var(--grad-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+
+    .main-grid {
+      display: grid; grid-template-columns: 440px 1fr;
+      gap: 20px; padding: 24px; max-width: 1500px; margin: 0 auto;
+    }
+    @media (max-width: 960px) { .main-grid { grid-template-columns: 1fr; } }
+
+    /* ── Panel ── */
+    .panel {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden; margin-bottom: 20px;
+    }
+    .panel:last-child { margin-bottom: 0; }
+    .panel-header {
+      padding: 16px 22px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .panel-header h2 {
+      font-family: 'Orbitron', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text);
+    }
+    .panel-header .badge {
+      margin-left: auto; background: rgba(168,85,247,0.15); border: 1px solid var(--border-acc);
+      color: var(--purple); border-radius: var(--r-full); font-size: 0.72rem; font-weight: 600; padding: 2px 10px;
+    }
+    .panel-body { padding: 22px; }
+
+    /* ── Top-level tabs (Upload / Bulk / Categories) ── */
+    .nav-tabs {
+      display: flex; gap: 3px; background: var(--bg2);
+      border-radius: var(--r-sm); padding: 4px; margin-bottom: 20px;
+    }
+    .nav-tab {
+      flex: 1; padding: 9px 6px; border: none; background: transparent;
+      color: var(--text2); border-radius: 6px;
+      font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 500;
+      cursor: pointer; transition: all var(--tr); white-space: nowrap;
+    }
+    .nav-tab.active { background: var(--card-hover); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+
+    .nav-panel { display: none; }
+    .nav-panel.active { display: block; }
+
+    /* ── Inner form tabs (Basic / SEO) ── */
+    .tabs {
+      display: flex; gap: 4px; background: var(--bg2);
+      border-radius: var(--r-sm); padding: 3px; margin-bottom: 18px;
+    }
+    .tab-btn {
+      flex: 1; padding: 8px; border: none; background: transparent;
+      color: var(--text2); border-radius: 5px;
+      font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 500;
+      cursor: pointer; transition: all var(--tr);
+    }
+    .tab-btn.active { background: var(--card-hover); color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Drop zone ── */
+    .drop-zone {
+      border: 2px dashed var(--border-acc); border-radius: var(--r-md);
+      padding: 28px 20px; text-align: center; cursor: pointer;
+      transition: all var(--tr); margin-bottom: 14px;
+    }
+    .drop-zone.drag-over { border-color: var(--purple); background: rgba(168,85,247,0.06); box-shadow: var(--glow); }
+    .drop-zone i { font-size: 1.8rem; color: var(--purple); margin-bottom: 8px; display: block; }
+    .drop-zone p { color: var(--text2); font-size: 0.88rem; }
+    .drop-zone span { color: var(--purple); font-weight: 600; }
+    #file-input { display: none; }
+
+    .preview-wrap { margin-bottom: 14px; display: none; }
+    .preview-wrap img { width: 100%; max-height: 180px; object-fit: cover; border-radius: var(--r-md); border: 1px solid var(--border-acc); }
+    .preview-info { font-size: 0.75rem; color: var(--text3); margin-top: 5px; }
+
+    .dual-info {
+      background: rgba(168,85,247,0.07); border: 1px solid var(--border-acc);
+      border-radius: var(--r-sm); padding: 10px 14px; font-size: 0.78rem;
+      color: var(--text2); margin-bottom: 14px; display: flex; gap: 16px;
+    }
+    .dual-info span { display: flex; align-items: center; gap: 6px; }
+    .dual-info i { font-size: 0.85rem; }
+
+    /* ── Field ── */
+    .field { margin-bottom: 13px; }
+    .field label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--text2); margin-bottom: 5px; }
+    .field label .req { color: var(--pink); }
+    .char-counter { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text3); margin-top: 3px; }
+    .char-counter.warn { color: var(--red); }
+
+    /* ── Progress ── */
+    .progress-wrap { margin-top: 12px; display: none; }
+    .progress-bar-bg { height: 5px; background: var(--bg3); border-radius: var(--r-full); overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--grad-main); border-radius: var(--r-full); width: 0%; transition: width 0.2s; }
+    .progress-text { font-size: 0.75rem; color: var(--text2); margin-top: 5px; text-align: center; }
+
+    /* ── Bulk upload ── */
+    .csv-drop {
+      border: 2px dashed rgba(59,130,246,0.4); border-radius: var(--r-md);
+      padding: 28px 20px; text-align: center; cursor: pointer;
+      transition: all var(--tr); margin-bottom: 14px;
+    }
+    .csv-drop.drag-over { border-color: var(--blue); background: rgba(59,130,246,0.06); }
+    .csv-drop i { font-size: 1.8rem; color: var(--blue); margin-bottom: 8px; display: block; }
+    .csv-drop p { color: var(--text2); font-size: 0.88rem; }
+    .csv-drop span { color: var(--blue); font-weight: 600; }
+    #csv-input { display: none; }
+
+    .bulk-results { margin-top: 14px; }
+    .bulk-result-row {
+      display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+      border-radius: var(--r-sm); margin-bottom: 6px; font-size: 0.8rem;
+    }
+    .bulk-result-row.ok    { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2); }
+    .bulk-result-row.error { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); }
+    .bulk-result-row .row-num { color: var(--text3); min-width: 36px; }
+    .bulk-result-row .row-title { flex: 1; font-weight: 500; }
+    .bulk-result-row .row-status { font-size: 0.72rem; }
+    .bulk-result-row.ok    .row-status { color: var(--green); }
+    .bulk-result-row.error .row-status { color: var(--red); }
+    .bulk-summary {
+      padding: 12px 16px; border-radius: var(--r-sm); margin-bottom: 12px;
+      background: var(--bg2); border: 1px solid var(--border); font-size: 0.85rem;
+      display: flex; gap: 20px;
+    }
+    .bulk-summary .s-ok    { color: var(--green); font-weight: 600; }
+    .bulk-summary .s-error { color: var(--red); font-weight: 600; }
+
+    /* ── Categories ── */
+    .cat-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .cat-item {
+      display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-sm);
+      transition: border-color var(--tr);
+    }
+    .cat-item:hover { border-color: var(--border-acc); }
+    .cat-name { flex: 1; font-size: 0.88rem; font-weight: 500; }
+    .cat-edit-input { flex: 1; font-size: 0.88rem; padding: 4px 10px; display: none; }
+    .cat-actions { display: flex; gap: 6px; }
+    .cat-add-form { display: flex; gap: 8px; }
+    .cat-add-form input { flex: 1; }
+
+    /* ── Library ── */
+    .lib-toolbar { display: flex; gap: 10px; margin-bottom: 16px; }
+    .lib-toolbar input { flex: 1; }
+    .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+    .img-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-md);
+      overflow: hidden; transition: border-color var(--tr), transform var(--tr);
+    }
+    .img-card:hover { border-color: var(--border-acc); transform: translateY(-2px); }
+    .img-card-thumb { width: 100%; height: 120px; object-fit: cover; background: var(--bg3); display: block; }
+    .img-card-body { padding: 10px 12px; }
+    .img-card-title {
+      font-size: 0.83rem; font-weight: 600; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px;
+    }
+    .img-card-meta { font-size: 0.7rem; color: var(--text3); margin-bottom: 6px; }
+    .img-card-sizes { font-size: 0.68rem; color: var(--text3); margin-bottom: 8px; display: flex; gap: 8px; }
+    .size-chip {
+      background: var(--bg3); border-radius: var(--r-full);
+      padding: 2px 8px; display: flex; align-items: center; gap: 4px;
+    }
+    .size-chip.webp { color: var(--green); }
+    .size-chip.orig { color: var(--blue); }
+    .tag-pills { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+    .pill {
+      background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2);
+      color: var(--purple); border-radius: var(--r-full); font-size: 0.66rem; padding: 2px 8px;
+    }
+    .img-card-actions { display: flex; gap: 6px; }
+    .empty-state { grid-column: 1 / -1; text-align: center; padding: 48px 20px; color: var(--text3); }
+    .empty-state i { font-size: 2rem; margin-bottom: 12px; display: block; opacity: 0.35; }
+
+    /* ── Toast ── */
+    #toast-container { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+    .toast {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: 12px 18px; display: flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; min-width: 240px; max-width: 340px;
+      box-shadow: var(--shadow-md); animation: slide-in 0.3s var(--ease);
+    }
+    .toast.success { border-color: rgba(34,197,94,0.4); }
+    .toast.success i { color: var(--green); }
+    .toast.error   { border-color: rgba(239,68,68,0.4); }
+    .toast.error   i { color: var(--red); }
+    .toast.info    { border-color: var(--border-acc); }
+    .toast.info    i { color: var(--purple); }
+    @keyframes slide-in { from { opacity:0; transform: translateX(30px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes fade-out  { to   { opacity:0; transform: translateX(30px); } }
+
+    /* ── Stat cards ── */
+    .stat-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--r-md);
+      padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; position: relative;
+      overflow: hidden;
+    }
+    .stat-card i { font-size: 1rem; color: var(--purple); margin-bottom: 4px; }
+    .stat-card .sc-val { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text); }
+    .stat-card .sc-lbl { font-size: 0.72rem; color: var(--text3); }
+
+    .cat-stat-pill {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r-full); padding: 5px 14px; font-size: 0.75rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .cat-stat-pill .csp-name { color: var(--text2); font-weight: 500; }
+    .cat-stat-pill .csp-count { color: var(--purple); font-weight: 700; }
+    .cat-stat-pill .csp-dl   { color: var(--blue);   font-size: 0.68rem; }
+    .cat-stat-pill .csp-v    { color: var(--green);  font-size: 0.68rem; }
+  </style>
+</head>
+<body>
+
+<!-- Login gate -->
+<div id="login-gate">
+  <div class="login-card" id="login-card">
+    <div class="logo">AnimeWallpaperz</div>
+    <p>Admin Panel — Enter your password</p>
+    <div class="input-wrap" style="margin-bottom:16px">
+      <i class="fa-solid fa-lock"></i>
+      <input type="password" id="pw-input" placeholder="Admin password" autocomplete="current-password">
+    </div>
+    <button class="btn btn-primary" onclick="login()">
+      <i class="fa-solid fa-arrow-right-to-bracket"></i> Enter
+    </button>
+  </div>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+
+  <div class="topbar">
+    <div class="topbar-logo">⚡ Admin Panel</div>
+    <div class="topbar-right">
+      <a href="/" target="_blank" class="btn btn-ghost btn-sm">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> View Site
+      </a>
+      <button class="btn btn-danger btn-sm" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div id="stats-bar" style="padding:16px 24px 0;max-width:1500px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:4px">
+      <div class="stat-card" id="sc-total">  <i class="fa-solid fa-images"></i>      <div class="sc-val">—</div><div class="sc-lbl">Total Wallpapers</div></div>
+      <div class="stat-card" id="sc-views">  <i class="fa-solid fa-eye"></i>         <div class="sc-val">—</div><div class="sc-lbl">Total Views</div></div>
+      <div class="stat-card" id="sc-dl">     <i class="fa-solid fa-download"></i>    <div class="sc-val">—</div><div class="sc-lbl">Total Downloads</div></div>
+      <div class="stat-card" id="sc-7d">     <i class="fa-solid fa-calendar-week"></i><div class="sc-val">—</div><div class="sc-lbl">Uploaded (7 days)</div></div>
+      <div class="stat-card" id="sc-size">   <i class="fa-solid fa-hard-drive"></i>  <div class="sc-val">—</div><div class="sc-lbl">Total Storage</div></div>
+    </div>
+    <!-- Category breakdown -->
+    <div id="cat-stats-bar" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px"></div>
+  </div>
+
+  <div class="main-grid">
+
+    <!-- Left column -->
+    <div>
+
+      <!-- Upload / Bulk / Categories panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <i class="fa-solid fa-sliders" style="color:var(--purple)"></i>
+          <h2>Manage</h2>
+        </div>
+        <div class="panel-body">
+
+          <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchNav('single', this)">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+            </button>
+            <button class="nav-tab" onclick="switchNav('bulk', this)">
+              <i class="fa-solid fa-table"></i> Bulk CSV
+            </button>
+            <button class="nav-tab" onclick="switchNav('cats', this)">
+              <i class="fa-solid fa-tags"></i> Categories
+            </button>
+          </div>
+
+          <!-- ── Single upload ── -->
+          <div class="nav-panel active" id="nav-single">
+            <form id="upload-form" onsubmit="submitUpload(event)">
+
+              <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                <i class="fa-solid fa-image"></i>
+                <p>Drag &amp; drop an image here, or <span>click to browse</span></p>
+                <p style="font-size:0.75rem;color:var(--text3);margin-top:5px">JPEG · PNG · WEBP · GIF · TIFF · max 50 MB</p>
+              </div>
+              <input type="file" id="file-input" name="image" accept="image/*">
+
+              <div class="preview-wrap" id="preview-wrap">
+                <img id="preview-img" src="" alt="Preview">
+                <div class="preview-info" id="preview-info"></div>
+              </div>
+
+              <div class="dual-info">
+                <span><i class="fa-solid fa-globe" style="color:var(--green)"></i> WebP generated automatically — used on the site</span>
+                <span><i class="fa-solid fa-download" style="color:var(--blue)"></i> Original kept as download file</span>
+              </div>
+
+              <div class="tabs">
+                <button type="button" class="tab-btn active" onclick="switchTab('basic', this, 'upload-form')">
+                  <i class="fa-solid fa-circle-info"></i> Basic Info
+                </button>
+                <button type="button" class="tab-btn" onclick="switchTab('seo', this, 'upload-form')">
+                  <i class="fa-solid fa-magnifying-glass"></i> SEO
+                </button>
+              </div>
+
+              <div class="tab-panel active" id="tab-basic">
+                <div class="field">
+                  <label>Title <span class="req">*</span></label>
+                  <input type="text" name="title" id="field-title" placeholder="Mystic Night 4K" oninput="autoSlug(this.value)">
+                </div>
+                <div class="field">
+                  <label>Tags <span style="color:var(--text3);font-weight:400">(comma-separated)</span></label>
+                  <input type="text" name="tags" placeholder="dark, fantasy, purple, 4k">
+                </div>
+                <div class="field">
+                  <label>Category</label>
+                  <select name="category" id="cat-select-upload"></select>
+                </div>
+              </div>
+
+              <div class="tab-panel" id="tab-seo">
+                <div class="field">
+                  <label>URL Slug <span style="color:var(--text3);font-weight:400">(auto from title)</span></label>
+                  <input type="text" name="slug" id="field-slug" placeholder="mystic-night-4k">
+                </div>
+                <div class="field">
+                  <label>Alt Text</label>
+                  <input type="text" name="alt_text" placeholder="A dark fantasy anime wallpaper with night sky">
+                </div>
+                <div class="field">
+                  <label>SEO Title</label>
+                  <input type="text" name="seo_title" maxlength="70"
+                    oninput="updateCounter('seo-cnt', this.value.length, 70)" placeholder="Mystic Night 4K — AnimeWallpaperz">
+                  <div class="char-counter" id="seo-cnt"><span>0 / 70</span></div>
+                </div>
+                <div class="field">
+                  <label>Meta Description</label>
+                  <textarea name="meta_desc" rows="3" maxlength="160"
+                    oninput="updateCounter('meta-cnt', this.value.length, 160)"
+                    placeholder="Download this stunning dark fantasy 4K wallpaper for free." style="resize:vertical"></textarea>
+                  <div class="char-counter" id="meta-cnt"><span>0 / 160</span></div>
+                </div>
+                <div class="field">
+                  <label>OG Title</label>
+                  <input type="text" name="og_title" placeholder="Mystic Night 4K — AnimeWallpaperz.in">
+                </div>
+                <div class="field">
+                  <label>OG Description</label>
+                  <textarea name="og_description" rows="2" maxlength="300"
+                    oninput="updateCounter('og-cnt', this.value.length, 300)"
+                    placeholder="Free 4K anime wallpapers at AnimeWallpaperz.in" style="resize:vertical"></textarea>
+                  <div class="char-counter" id="og-cnt"><span>0 / 300</span></div>
+                </div>
+              </div>
+
+              <div class="progress-wrap" id="progress-wrap">
+                <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-bar"></div></div>
+                <div class="progress-text" id="progress-text">Uploading…</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="upload-btn" style="margin-top:14px">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload Wallpaper
+              </button>
+            </form>
+          </div>
+
+          <!-- ── Bulk CSV upload ── -->
+          <div class="nav-panel" id="nav-bulk">
+            <p style="font-size:0.82rem;color:var(--text2);margin-bottom:14px">
+              Upload a CSV file where each row is a wallpaper. The server will download each image
+              from the <code style="color:var(--purple)">image_url</code> column, generate a WebP version,
+              and save both files automatically.
+            </p>
+
+            <button class="btn btn-ghost btn-sm" style="margin-bottom:16px;width:100%" onclick="downloadTemplate()">
+              <i class="fa-solid fa-file-csv"></i> Download CSV Template
+            </button>
+
+            <div class="csv-drop" id="csv-drop" onclick="document.getElementById('csv-input').click()">
+              <i class="fa-solid fa-file-csv"></i>
+              <p>Drag &amp; drop your CSV here, or <span>click to browse</span></p>
+              <p style="font-size:0.75rem;color:var(--text3);margin-top:5px">Max 5 MB · UTF-8 encoded</p>
+            </div>
+            <input type="file" id="csv-input" accept=".csv,text/csv">
+
+            <div id="csv-selected" style="font-size:0.78rem;color:var(--text2);margin-bottom:10px;display:none"></div>
+
+            <div class="progress-wrap" id="bulk-progress-wrap">
+              <div class="progress-bar-bg"><div class="progress-bar-fill" id="bulk-progress-bar" style="background:var(--grad-blue)"></div></div>
+              <div class="progress-text" id="bulk-progress-text">Processing…</div>
+            </div>
+
+            <button class="btn btn-primary" id="bulk-upload-btn" onclick="submitBulk()" style="margin-top:10px;background:var(--grad-blue)">
+              <i class="fa-solid fa-bolt"></i> Process CSV &amp; Upload All
+            </button>
+
+            <div class="bulk-results" id="bulk-results" style="margin-top:16px;display:none"></div>
+          </div>
+
+          <!-- ── Categories ── -->
+          <div class="nav-panel" id="nav-cats">
+            <div class="cat-list" id="cat-list">
+              <div style="color:var(--text3);font-size:0.85rem;text-align:center;padding:20px 0">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading…
+              </div>
+            </div>
+            <div class="cat-add-form">
+              <input type="text" id="new-cat-input" placeholder="New category name…" maxlength="100"
+                onkeydown="if(event.key==='Enter'){event.preventDefault();addCategory();}">
+              <button class="btn btn-success btn-sm" onclick="addCategory()" style="white-space:nowrap">
+                <i class="fa-solid fa-plus"></i> Add
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /left col -->
+
+    <!-- Right column: Library -->
+    <div>
+      <div class="panel" style="height:calc(100vh - 80px);display:flex;flex-direction:column">
+        <div class="panel-header">
+          <i class="fa-solid fa-images" style="color:var(--purple)"></i>
+          <h2>Wallpaper Library</h2>
+          <span class="badge" id="count-badge">0</span>
+          <button class="btn btn-ghost btn-xs" style="margin-left:8px" onclick="loadImages()" title="Refresh">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+        </div>
+        <div class="panel-body" style="overflow-y:auto;flex:1">
+          <div class="lib-toolbar">
+            <input type="text" placeholder="Search title, tags, category…" id="search-input" oninput="filterImages(this.value)">
+          </div>
+          <div class="img-grid" id="img-grid">
+            <div class="empty-state">
+              <i class="fa-solid fa-image"></i>
+              <p>Loading library…</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main-grid -->
+</div><!-- /dashboard -->
+
+<div id="toast-container"></div>
+
+<script>
+// ── State ────────────────────────────────────────────────────────────────────
+let allImages    = [];
+let allCats      = [];
+let selectedCsv  = null;
+
+// ── Auth ─────────────────────────────────────────────────────────────────────
+async function checkAuth() {
+  try {
+    const res = await fetch('/api/images');
+    if (res.ok) {
+      allImages = await res.json();
+      showDashboard();
+      renderImages(allImages);
+      loadCategories();
+      loadStats();
+    }
+  } catch { /* stay on login */ }
+}
+
+async function login() {
+  const pw  = document.getElementById('pw-input').value;
+  const btn = document.querySelector('#login-gate .btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Checking…';
+
+  try {
+    const res = await fetch('/api/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw }),
+    });
+    if (res.ok) {
+      showDashboard();
+      loadImages();
+      loadCategories();
+      loadStats();
+    } else {
+      const card  = document.getElementById('login-card');
+      const input = document.getElementById('pw-input');
+      input.classList.add('error');
+      card.style.animation = 'none';
+      setTimeout(() => { card.style.animation = 'shake 0.4s cubic-bezier(0.4,0,0.2,1)'; }, 10);
+      setTimeout(() => input.classList.remove('error'), 1500);
+      toast('Wrong password', 'error');
+    }
+  } catch { toast('Network error', 'error'); }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Enter';
+}
+
+async function logout() {
+  await fetch('/api/logout', { method: 'POST' });
+  location.reload();
+}
+
+function showDashboard() {
+  document.getElementById('login-gate').style.display  = 'none';
+  document.getElementById('dashboard').style.display   = 'block';
+}
+
+document.getElementById('pw-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
+
+// ── Nav tabs ─────────────────────────────────────────────────────────────────
+function switchNav(name, btn) {
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  if (name === 'cats') loadCategories();
+}
+
+// ── Form inner tabs ───────────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  const form = btn.closest('.nav-panel') || document;
+  form.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  form.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ── Single upload ─────────────────────────────────────────────────────────────
+const dropZone  = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+
+dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault(); dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) { fileInput.files = e.dataTransfer.files; showPreview(file); }
+});
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) showPreview(fileInput.files[0]); });
+
+function showPreview(file) {
+  const wrap = document.getElementById('preview-wrap');
+  const img  = document.getElementById('preview-img');
+  const reader = new FileReader();
+  reader.onload = (e) => { img.src = e.target.result; wrap.style.display = 'block'; };
+  reader.readAsDataURL(file);
+  const mb = (file.size / 1024 / 1024).toFixed(2);
+  document.getElementById('preview-info').textContent = `${file.name} · ${mb} MB (original)`;
+}
+
+function submitUpload(e) {
+  e.preventDefault();
+  if (!fileInput.files[0]) { toast('Please select an image file', 'error'); return; }
+  if (!document.getElementById('field-title').value.trim()) { toast('Title is required', 'error'); return; }
+
+  const formData = new FormData(document.getElementById('upload-form'));
+  const btn      = document.getElementById('upload-btn');
+  const progWrap = document.getElementById('progress-wrap');
+  const progBar  = document.getElementById('progress-bar');
+  const progText = document.getElementById('progress-text');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading…';
+  progWrap.style.display = 'block';
+
+  const xhr = new XMLHttpRequest();
+  xhr.upload.onprogress = (ev) => {
+    if (ev.lengthComputable) {
+      const pct = Math.round((ev.loaded / ev.total) * 100);
+      progBar.style.width  = pct + '%';
+      progText.textContent = `Uploading… ${pct}%`;
+    }
+  };
+  xhr.onload = () => {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Upload Wallpaper';
+    progWrap.style.display = 'none'; progBar.style.width = '0%';
+
+    if (xhr.status === 200 || xhr.status === 201) {
+      toast('Wallpaper uploaded! WebP generated automatically.', 'success');
+      document.getElementById('upload-form').reset();
+      document.getElementById('preview-wrap').style.display = 'none';
+      loadImages();
+      loadStats();
+    } else {
+      let msg = 'Upload failed';
+      try { msg = JSON.parse(xhr.responseText).error || msg; } catch {}
+      toast(msg, 'error');
+    }
+  };
+  xhr.onerror = () => {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Upload Wallpaper';
+    progWrap.style.display = 'none';
+    toast('Network error during upload', 'error');
+  };
+  xhr.open('POST', '/api/upload');
+  xhr.send(formData);
+}
+
+// ── Bulk CSV upload ───────────────────────────────────────────────────────────
+const csvDrop  = document.getElementById('csv-drop');
+const csvInput = document.getElementById('csv-input');
+
+csvDrop.addEventListener('dragover', (e) => { e.preventDefault(); csvDrop.classList.add('drag-over'); });
+csvDrop.addEventListener('dragleave', () => csvDrop.classList.remove('drag-over'));
+csvDrop.addEventListener('drop', (e) => {
+  e.preventDefault(); csvDrop.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) { csvInput.files = e.dataTransfer.files; showCsvSelected(file); }
+});
+csvInput.addEventListener('change', () => { if (csvInput.files[0]) showCsvSelected(csvInput.files[0]); });
+
+function showCsvSelected(file) {
+  selectedCsv = file;
+  const el = document.getElementById('csv-selected');
+  el.style.display = 'block';
+  el.innerHTML = `<i class="fa-solid fa-file-csv" style="color:var(--blue)"></i> ${esc(file.name)} · ${(file.size/1024).toFixed(1)} KB selected`;
+}
+
+function downloadTemplate() {
+  window.location.href = '/api/bulk-template';
+}
+
+async function submitBulk() {
+  if (!csvInput.files[0]) { toast('Please select a CSV file', 'error'); return; }
+
+  const btn     = document.getElementById('bulk-upload-btn');
+  const progW   = document.getElementById('bulk-progress-wrap');
+  const progBar = document.getElementById('bulk-progress-bar');
+  const progTxt = document.getElementById('bulk-progress-text');
+  const resDiv  = document.getElementById('bulk-results');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing…';
+  progW.style.display = 'block';
+  resDiv.style.display = 'none';
+  progBar.style.width = '30%';
+  progTxt.textContent = 'Uploading CSV and processing images… (this may take a while)';
+
+  const formData = new FormData();
+  formData.append('csv', csvInput.files[0]);
+
+  try {
+    const res  = await fetch('/api/bulk-upload', { method: 'POST', body: formData });
+    const data = await res.json();
+
+    progBar.style.width = '100%';
+    progTxt.textContent = 'Done!';
+    setTimeout(() => { progW.style.display = 'none'; progBar.style.width = '0%'; }, 1000);
+
+    if (!res.ok) { toast(data.error || 'Bulk upload failed', 'error'); }
+    else {
+      renderBulkResults(data);
+      loadImages();
+      loadStats();
+      toast(`Done: ${data.succeeded} uploaded, ${data.failed} failed`, data.failed > 0 ? 'info' : 'success');
+    }
+  } catch (err) {
+    progW.style.display = 'none';
+    toast('Network error: ' + err.message, 'error');
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-bolt"></i> Process CSV & Upload All';
+}
+
+function renderBulkResults(data) {
+  const div = document.getElementById('bulk-results');
+  div.style.display = 'block';
+
+  let html = `<div class="bulk-summary">
+    <span>Total: <strong>${data.total}</strong></span>
+    <span class="s-ok"><i class="fa-solid fa-circle-check"></i> ${data.succeeded} succeeded</span>
+    <span class="s-error"><i class="fa-solid fa-circle-xmark"></i> ${data.failed} failed</span>
+  </div>`;
+
+  for (const r of data.results) {
+    if (r.status === 'ok') {
+      html += `<div class="bulk-result-row ok">
+        <span class="row-num">Row ${r.row}</span>
+        <span class="row-title">${esc(r.title)}</span>
+        <span class="row-status"><i class="fa-solid fa-circle-check"></i> Uploaded</span>
+      </div>`;
+    } else {
+      html += `<div class="bulk-result-row error">
+        <span class="row-num">Row ${r.row}</span>
+        <span class="row-title">${esc(r.title)}</span>
+        <span class="row-status"><i class="fa-solid fa-circle-xmark"></i> ${esc(r.error)}</span>
+      </div>`;
+    }
+  }
+
+  div.innerHTML = html;
+}
+
+// ── Categories ────────────────────────────────────────────────────────────────
+async function loadCategories() {
+  try {
+    const res = await fetch('/api/categories');
+    if (!res.ok) return;
+    allCats = await res.json();
+    renderCategories();
+    populateCategorySelects();
+  } catch { /* ignore */ }
+}
+
+function renderCategories() {
+  const list = document.getElementById('cat-list');
+  if (!allCats.length) {
+    list.innerHTML = '<div style="color:var(--text3);font-size:0.82rem;text-align:center;padding:12px 0">No categories yet</div>';
+    return;
+  }
+  list.innerHTML = allCats.map(cat => `
+    <div class="cat-item" id="cat-${cat.id}">
+      <span class="cat-name" id="cat-name-${cat.id}">${esc(cat.name)}</span>
+      <input class="cat-edit-input" id="cat-edit-${cat.id}" type="text" value="${esc(cat.name)}" maxlength="100"
+        onkeydown="if(event.key==='Enter') saveCategory(${cat.id}); if(event.key==='Escape') cancelEdit(${cat.id});">
+      <div class="cat-actions">
+        <button class="btn btn-warn btn-xs" id="cat-edit-btn-${cat.id}" onclick="startEdit(${cat.id})" title="Rename">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="btn btn-success btn-xs" id="cat-save-btn-${cat.id}" style="display:none" onclick="saveCategory(${cat.id})" title="Save">
+          <i class="fa-solid fa-check"></i>
+        </button>
+        <button class="btn btn-ghost btn-xs" id="cat-cancel-btn-${cat.id}" style="display:none" onclick="cancelEdit(${cat.id})" title="Cancel">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="btn btn-danger btn-xs" onclick="deleteCategory(${cat.id}, '${esc(cat.name)}')" title="Delete">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function startEdit(id) {
+  document.getElementById(`cat-name-${id}`).style.display = 'none';
+  document.getElementById(`cat-edit-${id}`).style.display = 'block';
+  document.getElementById(`cat-edit-btn-${id}`).style.display = 'none';
+  document.getElementById(`cat-save-btn-${id}`).style.display = '';
+  document.getElementById(`cat-cancel-btn-${id}`).style.display = '';
+  document.getElementById(`cat-edit-${id}`).focus();
+  document.getElementById(`cat-edit-${id}`).select();
+}
+
+function cancelEdit(id) {
+  const cat = allCats.find(c => c.id === id);
+  if (cat) document.getElementById(`cat-edit-${id}`).value = cat.name;
+  document.getElementById(`cat-name-${id}`).style.display = '';
+  document.getElementById(`cat-edit-${id}`).style.display = 'none';
+  document.getElementById(`cat-edit-btn-${id}`).style.display = '';
+  document.getElementById(`cat-save-btn-${id}`).style.display = 'none';
+  document.getElementById(`cat-cancel-btn-${id}`).style.display = 'none';
+}
+
+async function saveCategory(id) {
+  const newName = document.getElementById(`cat-edit-${id}`).value.trim();
+  if (!newName) { toast('Name cannot be empty', 'error'); return; }
+
+  try {
+    const res = await fetch(`/api/categories/${id}`, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: newName }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      toast(`Category renamed to "${newName}"`, 'success');
+      await loadCategories();
+    } else {
+      toast(data.error || 'Rename failed', 'error');
+    }
+  } catch { toast('Network error', 'error'); }
+}
+
+async function addCategory() {
+  const input = document.getElementById('new-cat-input');
+  const name  = input.value.trim();
+  if (!name) { toast('Enter a category name', 'error'); return; }
+
+  try {
+    const res  = await fetch('/api/categories', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      toast(`Category "${name}" added`, 'success');
+      input.value = '';
+      await loadCategories();
+    } else {
+      toast(data.error || 'Add failed', 'error');
+    }
+  } catch { toast('Network error', 'error'); }
+}
+
+async function deleteCategory(id, name) {
+  if (!confirm(`Delete category "${name}"?\n\nWallpapers in this category will not be deleted.`)) return;
+
+  try {
+    const res = await fetch(`/api/categories/${id}`, { method: 'DELETE' });
+    if (res.ok) {
+      toast(`Category "${name}" deleted`, 'success');
+      await loadCategories();
+    } else {
+      const data = await res.json();
+      toast(data.error || 'Delete failed', 'error');
+    }
+  } catch { toast('Network error', 'error'); }
+}
+
+function populateCategorySelects() {
+  const sel = document.getElementById('cat-select-upload');
+  const current = sel.value;
+  sel.innerHTML = '<option value="">— No category —</option>' +
+    allCats.map(c => `<option value="${esc(c.name)}" ${c.name === current ? 'selected' : ''}>${esc(c.name)}</option>`).join('');
+}
+
+// ── Library ───────────────────────────────────────────────────────────────────
+async function loadImages() {
+  try {
+    const res = await fetch('/api/images');
+    if (!res.ok) { toast('Failed to load library', 'error'); return; }
+    allImages = await res.json();
+    filterImages(document.getElementById('search-input').value);
+  } catch { toast('Network error', 'error'); }
+}
+
+function filterImages(query) {
+  const q = query.toLowerCase().trim();
+  const filtered = q
+    ? allImages.filter(img =>
+        (img.title    || '').toLowerCase().includes(q) ||
+        (img.tags     || '').toLowerCase().includes(q) ||
+        (img.category || '').toLowerCase().includes(q))
+    : allImages;
+  renderImages(filtered);
+}
+
+function renderImages(list) {
+  const grid  = document.getElementById('img-grid');
+  document.getElementById('count-badge').textContent = allImages.length;
+
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state"><i class="fa-solid fa-image"></i><p>No wallpapers found</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(img => {
+    const tags    = (img.tags || '').split(',').map(t => t.trim()).filter(Boolean);
+    const date    = new Date(img.uploaded_at).toLocaleDateString();
+    const origMB  = img.size_original ? (img.size_original / 1024 / 1024).toFixed(1) + ' MB' : '—';
+    const webpMB  = img.size_webp     ? (img.size_webp     / 1024 / 1024).toFixed(1) + ' MB' : '—';
+    const pillsHtml = tags.slice(0, 3).map(t => `<span class="pill">${esc(t)}</span>`).join('');
+
+    return `
+      <div class="img-card">
+        <img class="img-card-thumb"
+          src="/wallpapers/${esc(img.filename_webp || img.filename_original)}"
+          alt="${esc(img.alt_text || img.title)}" loading="lazy"
+          onerror="this.style.background='var(--bg3)'">
+        <div class="img-card-body">
+          <div class="img-card-title" title="${esc(img.title)}">${esc(img.title)}</div>
+          <div class="img-card-meta">${esc(img.category || '—')} · ${date}</div>
+          <div class="img-card-sizes">
+            <span class="size-chip webp"><i class="fa-solid fa-globe"></i> ${webpMB}</span>
+            <span class="size-chip orig"><i class="fa-solid fa-download"></i> ${origMB}</span>
+          </div>
+          <div style="display:flex;gap:12px;font-size:0.7rem;color:var(--text3);margin-bottom:8px">
+            <span><i class="fa-solid fa-eye" style="color:var(--green)"></i> ${Number(img.views||0).toLocaleString()} views</span>
+            <span><i class="fa-solid fa-download" style="color:var(--blue)"></i> ${Number(img.downloads||0).toLocaleString()} dl</span>
+          </div>
+          <div class="tag-pills">${pillsHtml}</div>
+          <div class="img-card-actions">
+            <button class="btn btn-danger btn-xs" onclick="deleteImage(${img.id}, '${esc(img.title)}')">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+async function deleteImage(id, title) {
+  if (!confirm(`Delete "${title}"?\n\nBoth the original and WebP files will be removed from the server.`)) return;
+  try {
+    const res = await fetch(`/api/images/${id}`, { method: 'DELETE' });
+    if (res.ok) { toast('Wallpaper deleted (both files)', 'success'); loadImages(); loadStats(); }
+    else { const d = await res.json(); toast(d.error || 'Delete failed', 'error'); }
+  } catch { toast('Network error', 'error'); }
+}
+
+// ── SEO helpers ───────────────────────────────────────────────────────────────
+function autoSlug(title) {
+  document.getElementById('field-slug').value = title.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
+}
+
+function updateCounter(id, len, max) {
+  const el   = document.getElementById(id);
+  const warn = max === 70 ? 60 : max === 160 ? 155 : max;
+  el.querySelector('span').textContent = `${len} / ${max}`;
+  el.classList.toggle('warn', len > warn);
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+function toast(msg, type = 'info') {
+  const icons = { success:'fa-circle-check', error:'fa-circle-xmark', info:'fa-circle-info' };
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `<i class="fa-solid ${icons[type]}"></i> ${esc(msg)}`;
+  document.getElementById('toast-container').appendChild(el);
+  setTimeout(() => {
+    el.style.animation = 'fade-out 0.3s cubic-bezier(0.4,0,0.2,1) forwards';
+    setTimeout(() => el.remove(), 300);
+  }, 4000);
+}
+
+function esc(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])
+  );
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+async function loadStats() {
+  try {
+    const res  = await fetch('/api/stats');
+    if (!res.ok) return;
+    const data = await res.json();
+    const t    = data.totals;
+
+    function fmtBytes(b) {
+      b = Number(b);
+      if (b >= 1073741824) return (b/1073741824).toFixed(1) + ' GB';
+      if (b >= 1048576)    return (b/1048576).toFixed(1) + ' MB';
+      return (b/1024).toFixed(0) + ' KB';
+    }
+    function fmtNum(n) { return Number(n).toLocaleString(); }
+
+    document.querySelector('#sc-total .sc-val').textContent  = fmtNum(t.total_images);
+    document.querySelector('#sc-views .sc-val').textContent  = fmtNum(t.total_views);
+    document.querySelector('#sc-dl .sc-val').textContent     = fmtNum(t.total_downloads);
+    document.querySelector('#sc-7d .sc-val').textContent     = fmtNum(t.uploads_last_7d);
+    const totalBytes = Number(t.total_size_original) + Number(t.total_size_webp);
+    document.querySelector('#sc-size .sc-val').textContent   = fmtBytes(totalBytes);
+
+    // Category pills
+    const bar = document.getElementById('cat-stats-bar');
+    bar.innerHTML = data.byCategory.map(c => `
+      <div class="cat-stat-pill">
+        <span class="csp-name">${esc(c.category)}</span>
+        <span class="csp-count">${fmtNum(c.count)} imgs</span>
+        <span class="csp-v"><i class="fa-solid fa-eye"></i> ${fmtNum(c.views)}</span>
+        <span class="csp-dl"><i class="fa-solid fa-download"></i> ${fmtNum(c.downloads)}</span>
+      </div>`).join('');
+  } catch { /* ignore */ }
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+checkAuth();
+</script>
+</body>
+</html>
